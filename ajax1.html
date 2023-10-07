@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX 1 - Text File</title>
+</head>
+<body>
+  <button id="button">Get Text File</button>
+  <script>
+    document.getElementById('button').addEventListener('click', loadText);
+
+    function loadText(){
+      //create xhr object
+      var xhr = new XMLHttpRequest();
+      //OPEN -> type, url/file, async
+      xhr.open('GET', 'sample.txt', true);
+
+      //readystate progression: 1 (server connection established)
+      //console.log('ReadyState: ', xhr.readyState);
+
+     //onload way
+      xhr.onload = function(){
+        if(this.status == 200){
+          console.log(this.responseText);
+        }
+      }
+      //onready state way
+//xhr.onreadystatechange = function(){
+  //readystate progression: 2-4 ()
+  //console.log('ReadyState: ', xhr.readyState);
+
+  //if(this.readyState == 4 && this.status == 200){
+    //console.log(this.responseText);
+  //}
+
+xhr.onerror = function(){console.log("Request Error...")}
+      //send request      
+      xhr.send();
+    };
+  </script>
+</body>
+</html>
